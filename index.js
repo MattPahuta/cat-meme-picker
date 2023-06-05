@@ -3,11 +3,20 @@ import { catsData } from './data.js'
 const emotionRadios = document.getElementById('emotion-radios');
 const getImageBtn = document.getElementById('get-image-btn');
 const gifsOnlyOption = document.getElementById('gifs-only-option');
+const memeModal = document.getElementById('meme-modal');
+const memeModalInner = document.getElementById('meme-modal-inner');
+const memeModalCloseBtn = document.getElementById('meme-modal-close-btn');
 
 // *** Event listeners *** //
 // *********************** //
-emotionRadios.addEventListener('change', highlightCheckedOption) // listen for change events on emotion radios
-getImageBtn.addEventListener('click', getMatchingCatsArray) // listen for clicks on 'get image' button
+emotionRadios.addEventListener('change', highlightCheckedOption); // listen for change events on emotion radios
+getImageBtn.addEventListener('click', renderCat); // listen for clicks on 'get image' button
+memeModalCloseBtn.addEventListener('click', closeModal);
+
+function closeModal() {
+  memeModal.style.display = 'none';
+}
+
 
 function getMatchingCatsArray() {
   const isGif = gifsOnlyOption.checked; // check if gif option is selected
@@ -20,6 +29,7 @@ function getMatchingCatsArray() {
       // check if gif option is checked, return appropriate array of cat memes
       return isGif ? cat.emotionTags.includes(selectedEmotion) && cat.isGif : cat.emotionTags.includes(selectedEmotion);
     })
+    return matchingCats;
   }
 }
 
@@ -34,9 +44,16 @@ function getSingleCatObject() {
   }
 }
 
+
 function renderCat() {
-  getSingleCatObject()
+  const catObject = getSingleCatObject()
+  memeModalInner.innerHTML = `
+    <img class="cat-img" src="./images/${catObject.image}" alt="${catObject.alt}">
+    `
+  memeModal.style.display = 'flex';
 }
+
+
 
 // add styling to selected emotion radio
 function highlightCheckedOption(e) {
