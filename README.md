@@ -32,7 +32,7 @@ Code developed during the Scrimba Frontend Dev Career Path, Essential JavaScript
 
 ### Links
 
-- Live Site URL: [Live Site on GitHub Pages](https://mattpahuta.github.io/cat-meme-picker/)
+- Live Site URL: [Cat Meme Picker](https://mattpahuta.github.io/cat-meme-picker/)
 
 ## My process
 
